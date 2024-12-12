@@ -6,26 +6,26 @@ const PublicLayout = () => {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#6c47ff',
+          backgroundColor: '#27ae60', // Green color for the header
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#fff', // White color for header text
         headerBackTitle: 'Back',
       }}>
       <Stack.Screen
         name="login"
         options={{
-          headerTitle: 'Clerk Auth App',
-        }}></Stack.Screen>
+          headerTitle: 'Welcome to Meal Planner', // Updated title for a welcoming feel
+        }} />
       <Stack.Screen
         name="register"
         options={{
-          headerTitle: 'Create Account',
-        }}></Stack.Screen>
+          headerTitle: 'Create Your Account', // More engaging title
+        }} />
       <Stack.Screen
         name="reset"
         options={{
-          headerTitle: 'Reset Password',
-        }}></Stack.Screen>
+          headerTitle: 'Reset Your Password', // Clearer title for the reset screen
+        }} />
     </Stack>
   );
 };

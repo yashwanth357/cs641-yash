@@ -1,4 +1,7 @@
-import { Button, TextInput, View, StyleSheet } from 'react-native';
+
+//.......
+
+import { Button, TextInput, View, StyleSheet, Text } from 'react-native';
 import { useSignUp } from '@clerk/clerk-expo';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { useState } from 'react';
@@ -64,21 +67,39 @@ const Register = () => {
       <Stack.Screen options={{ headerBackVisible: !pendingVerification }} />
       <Spinner visible={loading} />
 
+      <Text style={styles.title}>Join Meal Planner!</Text>
+      <Text style={styles.subtitle}>Create an account to start planning your meals</Text>
+
       {!pendingVerification && (
         <>
-          <TextInput autoCapitalize="none" placeholder="simon@galaxies.dev" value={emailAddress} onChangeText={setEmailAddress} style={styles.inputField} />
-          <TextInput placeholder="password" value={password} onChangeText={setPassword} secureTextEntry style={styles.inputField} />
+          <TextInput
+            autoCapitalize="none"
+            placeholder="Email"
+            value={emailAddress}
+            onChangeText={setEmailAddress}
+            style={styles.inputField}
+          />
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            style={styles.inputField}
+          />
 
-          <Button onPress={onSignUpPress} title="Sign up" color={'#6c47ff'}></Button>
+          <Button onPress={onSignUpPress} title="Sign up" color={'#27ae60'} />
         </>
       )}
 
       {pendingVerification && (
         <>
-          <View>
-            <TextInput value={code} placeholder="Code..." style={styles.inputField} onChangeText={setCode} />
-          </View>
-          <Button onPress={onPressVerify} title="Verify Email" color={'#6c47ff'}></Button>
+          <TextInput
+            value={code}
+            placeholder="Verification Code"
+            style={styles.inputField}
+            onChangeText={setCode}
+          />
+          <Button onPress={onPressVerify} title="Verify Email" color={'#27ae60'} />
         </>
       )}
     </View>
@@ -90,19 +111,34 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#f9f9f9', // Light background for a fresh look
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#2c3e50', // Darker color for text
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#34495e', // Slightly lighter color for subtitle
+    marginBottom: 20,
+    textAlign: 'center',
   },
   inputField: {
-    marginVertical: 4,
+    marginVertical: 10,
     height: 50,
     borderWidth: 1,
-    borderColor: '#6c47ff',
-    borderRadius: 4,
-    padding: 10,
+    borderColor: '#27ae60', // Green color for input borders
+    borderRadius: 25,
+    paddingHorizontal: 15,
     backgroundColor: '#fff',
-  },
-  button: {
-    margin: 8,
-    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
 });
 

@@ -6,6 +6,8 @@ const Profile = () => {
   const { user } = useUser();
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
+  // const [mobile, setMobile] = useState(user?.Mobile);
+
 
   const onSaveUser = async () => {
     try {
@@ -27,6 +29,8 @@ const Profile = () => {
 
       <TextInput placeholder="First Name" value={firstName|| ''} onChangeText={setFirstName} style={styles.inputField} />
       <TextInput placeholder="Last Name" value={lastName|| ''} onChangeText={setLastName} style={styles.inputField} />
+      {/* <TextInput placeholder="Mobile" value={mobile|| ''} onChangeText={setMobile} style={styles.inputField} /> */}
+
       <Button onPress={onSaveUser} title="Update account" color={'#6c47ff'}></Button>
     </View>
   );

@@ -1,7 +1,12 @@
+
+
+
+
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable } from 'react-native';
 import { useAuth } from '@clerk/clerk-expo';
+import { CartProvider } from './CartContext'; // Adjust the import based on your project structure
 
 export const LogoutButton = () => {
   const { signOut } = useAuth();
@@ -17,16 +22,20 @@ export const LogoutButton = () => {
   );
 };
 
+
+
 const TabsPage = () => {
   const { isSignedIn } = useAuth();
 
   return (
+    <CartProvider> {/* Wrap Tabs with CartProvider */}
+
     <Tabs
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#6c47ff',
+          backgroundColor: '#27ae60', // Green color for the header
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#fff', // White color for header text
       }}>
       <Tabs.Screen
         name="home"
@@ -47,7 +56,27 @@ const TabsPage = () => {
         }}
         redirect={!isSignedIn}
       />
+      {/* <Tabs.Screen
+        name="payment"
+        options={{
+          headerTitle: 'Payment',
+          tabBarIcon: ({ color, size }) => <Ionicons name="card-outline" size={size} color={color} />,
+          tabBarLabel: 'Payment',
+        }}
+        redirect={!isSignedIn}
+      /> */}
+      <Tabs.Screen
+        name="cart"
+        options={{
+          headerTitle: 'cart',
+          tabBarIcon: ({ color, size }) => <Ionicons name="cart-outline" size={size} color={color} />,
+          tabBarLabel: 'cart',
+        }}
+        redirect={!isSignedIn}
+      />
     </Tabs>
+    </CartProvider>
+
   );
 };
 

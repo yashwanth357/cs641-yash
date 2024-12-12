@@ -1,7 +1,10 @@
+
+
+
 import { useSignIn } from '@clerk/clerk-expo';
 import { Link } from 'expo-router';
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button, Pressable, Text, Alert } from 'react-native';
+import { View, StyleSheet, TextInput, Pressable, Text } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 const Login = () => {
@@ -35,22 +38,33 @@ const Login = () => {
     <View style={styles.container}>
       <Spinner visible={loading} />
 
-        <Text>Email</Text>
-      <TextInput autoCapitalize="none" placeholder="example@gmail.com" value={emailAddress} onChangeText={setEmailAddress} style={styles.inputField} />
-      <Text>Password</Text>
-      <TextInput placeholder="password" value={password} onChangeText={setPassword} secureTextEntry style={styles.inputField} />
+      <Text style={styles.title}>Welcome to Meal Planner!</Text>
+      <Text style={styles.subtitle}>Sign in to start planning your meals</Text>
 
-      <Button onPress={onSignInPress} title="Login" color={'#6c47ff'}></Button>
+      <TextInput
+        autoCapitalize="none"
+        placeholder="Email"
+        value={emailAddress}
+        onChangeText={setEmailAddress}
+        style={styles.inputField}
+      />
+      <TextInput
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        style={styles.inputField}
+      />
+
+      <Pressable style={styles.button} onPress={onSignInPress}>
+        <Text style={styles.buttonText}>Login</Text>
+      </Pressable>
 
       <Link href="/reset" asChild>
-        <Pressable style={styles.button}>
-          <Text>Forgot password?</Text>
-        </Pressable>
+        <Text style={styles.linkText}>Forgot password?</Text>
       </Link>
       <Link href="/register" asChild>
-        <Pressable style={styles.button}>
-          <Text>Create Account</Text>
-        </Pressable>
+        <Text style={styles.linkText}>Create Account</Text>
       </Link>
     </View>
   );
@@ -61,19 +75,57 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#f9f9f9', // Light background for a fresh look
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#2c3e50', // Darker color for text
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#34495e', // Slightly lighter color for subtitle
+    marginBottom: 20,
+    textAlign: 'center',
   },
   inputField: {
-    marginVertical: 4,
+    marginVertical: 10,
     height: 50,
     borderWidth: 1,
-    borderColor: '#6c47ff',
-    borderRadius: 4,
-    padding: 10,
+    borderColor: '#27ae60', // Green color for input borders
+    borderRadius: 25,
+    paddingHorizontal: 15,
     backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   button: {
-    margin: 8,
+    backgroundColor: '#27ae60', // Green color for the button
+    borderRadius: 25,
+    paddingVertical: 15,
+    marginVertical: 20,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  linkText: {
+    color: '#27ae60', // Green color for links
+    textAlign: 'center',
+    marginVertical: 5,
+    textDecorationLine: 'underline',
   },
 });
 
